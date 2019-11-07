@@ -7,11 +7,13 @@ import os
 import sys
 from sdg.test.behave import (
     core,
-    terraform
+    terraform,
+    web
 )
 
 MODULES = [
-    terraform
+    terraform,
+    web
 ]
 
 DIR = os.path.abspath(os.path.dirname(__file__))
