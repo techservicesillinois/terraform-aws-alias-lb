@@ -22,7 +22,7 @@ Feature: Test a basic tfvars configuration for the alias-lb module.
             #-----------------|------------------|
             | id              | computed         |
             | alias.#         | 1                |
-            | allow_overwrite | true             |
+            | allow_overwrite | computed         |
             | name            | my-private-alias |
             | fqdn            | computed         |
             | type            | A                |

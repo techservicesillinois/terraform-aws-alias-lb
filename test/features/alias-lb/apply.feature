@@ -16,11 +16,6 @@ Feature: Test a basic tfvars configuration apply for the alias-lb module.
             | fqdn |  <hostname>.<domain> |
         
         And terraform wait for DNS lookup from output 'fqdn'
-        Then terraform ping host from output 'fqdn' succeeds
-        And terraform url from output 'fqdn' returns status code '503'
-        When we run terraform destroy
-        # State file no longer has outputs
-        Then ping host '<hostname>.<domain>' fails
         
     Examples: hostname:domain pairs
         | hostname                    | domain                            |
