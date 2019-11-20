@@ -1,8 +1,9 @@
 # alias-lb
 
-Provides a Route 53 alias whose target is an Amazon application load balancer (ALB).
+[![Build Status](https://drone.techservices.illinois.edu/api/badges/techservicesillinois/terraform-aws-alias-lb/status.svg)](https://drone.techservices.illinois.edu/techservicesillinois/terraform-aws-alias-lb)
 
-This module provides a Route 53 alias whose target is an application load balancer. This module exists for cases in which a Route 53 alias needs to be managed using a _separate life cycle_ from the load balancer itself or an ECS service.
+Provides a Route 53 alias whose target is an Amazon application load balancer (ALB).
+This module exists for cases in which a Route 53 alias needs to be managed using a _separate life cycle_ from the load balancer itself or an ECS service.
 
 ### Lifecycle options for Route 53 aliases
 
@@ -12,7 +13,7 @@ When creating an application load balancer, Amazon creates a hostname like `publ
 
 The `lb` module therefore creates a Route 53 alias record like `public.some-fully-qualified-domain-name` that can be used by downstream consumers (like users of the `ecs-service` module) as a symbolic reference to the load balancer, and which can be easily reprovisioned if the load balancer needs to be spun down and relaunched.
 
-Use the source `git@github.com:cites-illinois/as-aws-modules//lb` when creating a load balancer with one or more Route 53 aliases. For more information, see the [manual page for the **lb** module](https://github.com/cites-illinois/as-aws-modules/blob/master/lb/README.md).
+Use the source `git@github.com:techservicesillinois/terraform-aws-alias-lb` when creating a load balancer with one or more Route 53 aliases. For more information, see the [manual page for the **lb** module](https://github.com/techservicesillinois/terraform-aws-lb).
 
 
 #### In the `ecs-service` module
@@ -23,7 +24,7 @@ This alias serves as the public identity for the deployed service, and is also u
 
 Since this type of alias is tied to the ECS container, the alias's lifecycle is concurrent with the container's lifecycle.
 
-Use the source `git@github.com:cites-illinois/as-aws-modules//ecs-service` when creating an ECS containerized service  with one or more Route 53 aliases. For more information, see the [manual page for the **ecs-service** module](https://github.com/cites-illinois/as-aws-modules/blob/master/ecs-service/README.md).
+Use the source `git@github.com:techservicesillinois/terraform-aws/ecs-service` when creating an ECS containerized service  with one or more Route 53 aliases. For more information, see the [manual page for the **ecs-service** module](https://github.com/techservicesillinois/terraform-aws-ecs-service).
 
 #### Separate from the `lb` and `ecs-service` module
 
@@ -37,7 +38,7 @@ Example Usage
 ### Alias to an ALB in a public Route 53 zone
 ```hcl
 module "alias" {
-  source   = "git@github.com:cites-illinois/as-aws-modules//alias-lb"
+  source   = "git@github.com:techservicesillinois/terraform-aws-alias-lb"
 
   hostname = "my-public-alias"
   domain   = "some-fully-qualified-domain-name"
@@ -48,7 +49,7 @@ module "alias" {
 ### Alias to an ALB in a private Route 53 zone
 ```hcl
 module "alias" {
-  source   = "git@github.com:cites-illinois/as-aws-modules//alias-lb"
+  source   = "git@github.com:techservicesillinois/terraform-aws-alias-lb"
 
   hostname = "my-private-alias"
   domain   = "local"
