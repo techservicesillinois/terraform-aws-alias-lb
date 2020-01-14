@@ -20,9 +20,8 @@ Feature: Test a basic tfvars configuration for the alias-lb module.
         Then terraform resource 'aws_route53_record' 'default' has changed attributes
             | attr            | value            |
             #-----------------|------------------|
-            | id              | computed         |
-            | alias.#         | 1                |
-            | allow_overwrite | computed         |
+            | id              | ${bool:True}     |
+            | allow_overwrite | ${bool:True}     |
             | name            | my-private-alias |
-            | fqdn            | computed         |
+            | fqdn            | ${bool:True}     |
             | type            | A                |
