@@ -8,7 +8,7 @@ Feature: Test a basic tfvars configuration for the alias-lb module.
             #----------|-------------------------------|
             | hostname | "ejtravis-behave-test-DELETE" |
             | domain   | "local"                       |
-            | lb_name  | "private"                     |
+            | lb_name  | "private2"                    |
         
     Scenario: Behave test engine runs a successful plan->apply->destroy
         When we run terraform plan
