@@ -1,14 +1,20 @@
 Feature: Test a basic tfvars configuration for the alias-lb module.
-    
+
+    Background:
+        Given the following variables
+            | key      | value                             |
+            #----------|-----------------------------------|
+            | hostname | behave-test-alias-lb-${random:10} |
+
     
     Scenario: Initialize testing for alias-lb module using private lb.
         
         Given terraform module 'alias-lb'
-            | key      | value              |
-            #----------|--------------------|
-            | hostname | "my-private-alias" |
-            | domain   | "local"            |
-            | lb_name  | "private2"         |
+            | key      | value             |
+            #----------|-------------------|
+            | hostname | "${var.hostname}" |
+            | domain   | "local"           |
+            | lb_name  | "private1"        |
 
         When we run terraform plan
         
@@ -18,7 +24,7 @@ Feature: Test a basic tfvars configuration for the alias-lb module.
             | create | aws_route53_record | default    |       |
 
         Then terraform resource 'aws_route53_record' 'default' has changed attributes
-            | attr            | value            |
-            #-----------------|------------------|
-            | name            | my-private-alias |
-            | type            | A                |
+            | attr            | value           |
+            #-----------------|-----------------|
+            | name            | ${var.hostname} |
+            | type            | A               |
