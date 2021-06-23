@@ -1,6 +1,6 @@
 # alias-lb
 
-[![Build Status](https://drone.techservices.illinois.edu/api/badges/techservicesillinois/terraform-aws-alias-lb/status.svg)](https://drone.techservices.illinois.edu/techservicesillinois/terraform-aws-alias-lb)
+[![Terraform actions status](https://github.com/techservicesillinois/terraform-aws-alias-lb/workflows/terraform/badge.svg)](https://github.com/techservicesillinois/terraform-aws-alias-lb/actions)
 
 Provides a Route 53 alias whose target is an Amazon application load balancer (ALB).
 This module exists for cases in which a Route 53 alias needs to be managed using a _separate life cycle_ from the load balancer itself or an ECS service.
